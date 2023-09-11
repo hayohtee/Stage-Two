@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extra_small_padding">4dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="large_padding">32dp</dimen>
+    <dimen name="profile_image_size">100dp</dimen>
+    <dimen name="icon_size">16dp</dimen>
+    <dimen name="skill_card_size">100dp</dimen>
+    <dimen name="skill_icon_size">32dp</dimen>
+    <dimen name="textfield_min_height">150dp</dimen>
+    <dimen name="textfield_icon_size">24dp</dimen>
+</resources>
