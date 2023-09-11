@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Stage Two</string>
+    <string name="profile_description">User\s profile picture</string>
+    <string name="location">Location</string>
+    <string name="kotlin">Kotlin</string>
+    <string name="skills">Skills</string>
+    <string name="about">About Me</string>
+    <string name="contact">Contact Info</string>
+    <string name="java">Java</string>
+    <string name="figma">Figma</string>
+    <string name="slack">Slack</string>
+    <string name="github">Github</string>
+    <string name="database">Database</string>
+    <string name="edit">Edit</string>
+    <string name="navigate_back">Navigate back</string>
+    <string name="full_name">Full name</string>
+    <string name="personal_bio">Personal Bio</string>
+    <string name="github_username">Github Username</string>
+    <string name="slack_username">Slack Username</string>
+    <string name="email">Email</string>
+    <string name="job_title">Job Title</string>
 </resources>
