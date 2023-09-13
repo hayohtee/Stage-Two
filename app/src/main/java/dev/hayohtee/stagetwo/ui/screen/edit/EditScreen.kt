@@ -58,7 +58,9 @@ fun EditScreen(
         topBar = { EditScreenAppBar(onNavigateBack = onNavigateBack) },
         modifier = modifier
     ) { innerPadding ->
-        Surface(modifier = Modifier.padding(innerPadding)) {
+        Surface(modifier = Modifier
+            .padding(innerPadding)
+            .verticalScroll(rememberScrollState())) {
             Column(
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.medium_padding)),
                 verticalArrangement = Arrangement
@@ -129,8 +131,7 @@ fun TextFields(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .verticalScroll(rememberScrollState()),
+        modifier = modifier,
         verticalArrangement = Arrangement
             .spacedBy(dimensionResource(id = R.dimen.medium_padding))
     ) {
