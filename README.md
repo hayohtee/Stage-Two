@@ -7,4 +7,4 @@ Stage two task of HNGx Internship. A mobile application serving as a comprehensi
 3. Run the app.
 
 ## Preview
-<a href="https://appetize.io/app/af47gykiouw4cjpdtrh37agyvm">Appetize</a>
+<a href="https://appetize.io/app/que66aqzn6fjbs5ztrxytm3yii">Appetize</a>
