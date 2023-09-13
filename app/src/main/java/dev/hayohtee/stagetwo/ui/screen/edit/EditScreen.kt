@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -36,6 +37,20 @@ import dev.hayohtee.stagetwo.ui.theme.StageTwoTheme
 
 @Composable
 fun EditScreen(
+    fullName: String,
+    onFullNameChange: (String) -> Unit,
+    jobTitle: String,
+    onJobTitleChange: (String) -> Unit,
+    location: String,
+    onLocationChange: (String) -> Unit,
+    emailAddress: String,
+    onEmailAddressChange: (String) -> Unit,
+    personalBio: String,
+    onPersonalBioChange: (String) -> Unit,
+    slackUsername: String,
+    onSlackUsernameChange: (String) -> Unit,
+    githubUsername: String,
+    onGithubUsernameChange: (String) -> Unit,
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -44,22 +59,31 @@ fun EditScreen(
         modifier = modifier
     ) { innerPadding ->
         Surface(modifier = Modifier.padding(innerPadding)) {
-            TextFields(
-                fullName = "",
-                onFullNameChange = {},
-                jobTitle = "",
-                onJobTitleChange = {},
-                location = "",
-                onLocationChange = {},
-                emailAddress = "",
-                onEmailAddressChange = {},
-                personalBio = "",
-                onPersonalBioChange = {},
-                slackUsername = "",
-                onSlackUsernameChange = {},
-                githubUsername = "",
-                onGithubUsernameChange = {}
-            )
+            Column(
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.medium_padding)),
+                verticalArrangement = Arrangement
+                    .spacedBy(dimensionResource(id = R.dimen.medium_padding))
+            ) {
+                TextFields(
+                    fullName = fullName,
+                    onFullNameChange = onFullNameChange,
+                    jobTitle = jobTitle,
+                    onJobTitleChange = onJobTitleChange,
+                    location = location,
+                    onLocationChange = onLocationChange,
+                    emailAddress = emailAddress,
+                    onEmailAddressChange = onEmailAddressChange,
+                    personalBio = personalBio,
+                    onPersonalBioChange = onPersonalBioChange,
+                    slackUsername = slackUsername,
+                    onSlackUsernameChange = onSlackUsernameChange,
+                    githubUsername = githubUsername,
+                    onGithubUsernameChange = onGithubUsernameChange
+                )
+                Button(onClick = onNavigateBack, modifier = Modifier.fillMaxWidth()) {
+                    Text(text = stringResource(id = R.string.submit))
+                }
+            }
         }
     }
 }
@@ -102,10 +126,10 @@ fun TextFields(
     onSlackUsernameChange: (String) -> Unit,
     githubUsername: String,
     onGithubUsernameChange: (String) -> Unit,
-    modifier: Modifier = Modifier) {
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
-            .padding(dimensionResource(id = R.dimen.medium_padding))
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement
             .spacedBy(dimensionResource(id = R.dimen.medium_padding))
@@ -115,7 +139,7 @@ fun TextFields(
             onValueChange = onFullNameChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.full_name))
             },
             leadingIcon = {
@@ -133,7 +157,7 @@ fun TextFields(
             onValueChange = onJobTitleChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.job_title))
             },
             leadingIcon = {
@@ -153,7 +177,7 @@ fun TextFields(
             onValueChange = onLocationChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.location))
             },
             leadingIcon = {
@@ -171,7 +195,7 @@ fun TextFields(
             onValueChange = onEmailAddressChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.email))
             },
             leadingIcon = {
@@ -194,7 +218,7 @@ fun TextFields(
                     minHeight = dimensionResource(id = R.dimen.textfield_min_height)
                 ),
             singleLine = false,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.personal_bio))
             },
             keyboardOptions = KeyboardOptions.Default.copy(
@@ -207,7 +231,7 @@ fun TextFields(
             onValueChange = onSlackUsernameChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.slack_username))
             },
             leadingIcon = {
@@ -227,7 +251,7 @@ fun TextFields(
             onValueChange = onGithubUsernameChange,
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = {
+            label = {
                 Text(text = stringResource(id = R.string.github_username))
             },
             leadingIcon = {
@@ -250,6 +274,20 @@ fun TextFields(
 fun EditScreenPreview() {
     StageTwoTheme {
         EditScreen(
+            fullName = "",
+            onFullNameChange = {},
+            jobTitle = "",
+            onJobTitleChange = {},
+            location = "",
+            onLocationChange = {},
+            emailAddress = "",
+            onEmailAddressChange = {},
+            personalBio = "",
+            onPersonalBioChange = {},
+            slackUsername = "",
+            onSlackUsernameChange = {},
+            githubUsername = "",
+            onGithubUsernameChange = {},
             onNavigateBack = {}
         )
     }
