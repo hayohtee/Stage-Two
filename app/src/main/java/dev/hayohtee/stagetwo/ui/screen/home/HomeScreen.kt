@@ -1,11 +1,8 @@
 package dev.hayohtee.stagetwo.ui.screen.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,8 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -69,7 +64,6 @@ fun HomeScreen(
             AboutSection(
                 personalBio = uiState.personalBio
             )
-            SkillsSection()
             ContactSection(
                 emailAddress = uiState.emailAddress,
                 githubUsername = uiState.gitHubUsername,
@@ -153,73 +147,6 @@ fun AboutSection(personalBio: String, modifier: Modifier = Modifier) {
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun SkillsSection(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.medium_padding))
-    ) {
-        Text(
-            text = stringResource(id = R.string.skills),
-            style = MaterialTheme.typography.titleLarge.copy(
-                fontWeight = FontWeight.Bold
-            )
-        )
-        FlowRow(
-            modifier = modifier,
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_padding)),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.small_padding))
-        ) {
-            SkillCard(
-                painter = painterResource(id = R.drawable.kotlin_16_svgrepo_com),
-                name = stringResource(id = R.string.kotlin)
-            )
-            SkillCard(
-                painter = painterResource(id = R.drawable.java_logo_svgrepo_com),
-                name = stringResource(id = R.string.java)
-            )
-            SkillCard(
-                painter = painterResource(id = R.drawable.figma_svgrepo_com),
-                name = stringResource(id = R.string.figma)
-            )
-            SkillCard(
-                painter = painterResource(id = R.drawable.database_02_svgrepo_com),
-                name = stringResource(id = R.string.database)
-            )
-        }
-    }
-}
-
-@Composable
-fun SkillCard(painter: Painter, name: String, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier.clickable {},
-        shape = RoundedCornerShape(10),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-
-    ) {
-        Column(
-            modifier = Modifier.size(dimensionResource(id = R.dimen.skill_card_size)),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Icon(
-                painter = painter,
-                contentDescription = name,
-                modifier = Modifier
-                    .size(dimensionResource(id = R.dimen.skill_icon_size))
-                    .padding(bottom = dimensionResource(id = R.dimen.small_padding))
-            )
-            Text(
-                text = name,
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
-    }
-}
 
 @Composable
 fun ContactSection(
