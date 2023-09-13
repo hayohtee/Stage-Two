@@ -12,10 +12,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,30 +33,49 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import dev.hayohtee.stagetwo.R
+import dev.hayohtee.stagetwo.ui.PortfolioUiState
+import dev.hayohtee.stagetwo.ui.getDefaultPortfolioUiState
 import dev.hayohtee.stagetwo.ui.theme.StageTwoTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .padding(dimensionResource(id = R.dimen.medium_padding))
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.medium_padding))
-    ) {
-        HeaderSection(
-            fullName = "",
-            jobTitle = "",
-            location = ""
-        )
-        AboutSection(
-            personalBio = ""
-        )
-        SkillsSection()
-        ContactSection(
-            emailAddress = "",
-            githubUsername = "",
-            slackUsername = ""
-        )
+fun HomeScreen(
+    uiState: PortfolioUiState,
+    onEditClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Scaffold(
+        modifier = modifier,
+        floatingActionButton = {
+            FloatingActionButton(onClick = onEditClick) {
+                Icon(
+                    imageVector = Icons.Filled.Edit,
+                    contentDescription = stringResource(id = R.string.edit)
+                )
+            }
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(dimensionResource(id = R.dimen.medium_padding))
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.medium_padding))
+        ) {
+            HeaderSection(
+                fullName = uiState.fullName,
+                jobTitle = uiState.title,
+                location = uiState.location
+            )
+            AboutSection(
+                personalBio = uiState.personalBio
+            )
+            SkillsSection()
+            ContactSection(
+                emailAddress = uiState.emailAddress,
+                githubUsername = uiState.gitHubUsername,
+                slackUsername = uiState.slackUsername
+            )
+        }
     }
 }
 
@@ -263,6 +286,9 @@ fun ContactItem(
 @Composable
 fun HomeScreenPreview() {
     StageTwoTheme {
-        HomeScreen()
+        HomeScreen(
+            uiState = getDefaultPortfolioUiState(),
+            onEditClick = {}
+        )
     }
 }
